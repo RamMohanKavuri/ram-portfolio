@@ -33,3 +33,9 @@ jobs:
       - name: Deploy on EC2
         run: |
           ssh -i ~/.ssh/deploy_key ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'ENDSSH'
+            docker load < /home/ec2-user/ram-portfolio.tar.gz
+            docker stop portfolio || true
+            docker rm portfolio || true
+            docker run -d --name portfolio -p 80:80 ram-portfolio
+            echo "Portfolio deployed successfully!"
+          ENDSSH
