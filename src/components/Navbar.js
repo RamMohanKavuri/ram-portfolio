@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 function Navbar() {
   return (
     <nav style={styles.nav}>
-      <h1 style={styles.logo}>RAM</h1>
+      <h1 style={styles.logo}>RAM MOHAN KAVURI</h1>
       <ul style={styles.ul}>
         {['hero','about','skills','projects','contact'].map((sec) => (
           <li key={sec} style={styles.li}>
