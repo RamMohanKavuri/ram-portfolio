@@ -31,7 +31,7 @@ function Hero() {
           <button style={styles.btnPrimary}>View My Work 🚀</button>
         </Link>
 
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        <a href="/Ram_Mohan_Kavuri_DevOps_Resume.pdf" target="_blank">
           <button style={styles.btnSecondary}>Download Resume 📄</button>
         </a>
       </div>
