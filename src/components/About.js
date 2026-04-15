@@ -1,6 +1,6 @@
 function About() {
   return (
-    <section id="about" style={styles.section}>
+    <section id="About" style={styles.section}>
       <h2>About Me</h2>
       <div style={styles.card}>
         <p style={styles.text}>
