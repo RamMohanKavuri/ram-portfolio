@@ -30,7 +30,8 @@ function Hero() {
         <Link to="projects" smooth={true} duration={500}>
           <button style={styles.btnPrimary}>View My Work 🚀</button>
         </Link>
-        
+
+        <a
           href={process.env.PUBLIC_URL + '/Ram_Mohan_Kavuri_DevOps_resume.pdf'}
           download="Ram_Mohan_Kavuri_Resume.pdf"
           target="_blank"
