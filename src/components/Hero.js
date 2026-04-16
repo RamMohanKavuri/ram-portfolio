@@ -30,7 +30,6 @@ function Hero() {
         <Link to="projects" smooth={true} duration={500}>
           <button style={styles.btnPrimary}>View My Work 🚀</button>
         </Link>
-
         
           href={process.env.PUBLIC_URL + '/Ram_Mohan_Kavuri_DevOps_resume.pdf'}
           download="Ram_Mohan_Kavuri_Resume.pdf"
@@ -66,6 +65,7 @@ const styles = {
     fontSize: '3.5rem',
     fontWeight: 'bold',
     margin: '10px 0',
+    color: '#ffffff',
   },
   highlight: {
     color: '#00bcd4',
