@@ -13,7 +13,7 @@ function Hero() {
       </h1>
 
       <h2 style={styles.role}>
-        Building Secure, Scalable & Automated Cloud Infrastructure
+        DevOps Engineer specializing in AWS, Kubernetes, CI/CD & Cloud Automation
       </h2>
 
       <p style={styles.desc}>
@@ -27,19 +27,44 @@ function Hero() {
       </div>
 
       <div style={styles.buttons}>
-        <Link to="projects" smooth={true} duration={500}>
-          <button style={styles.btnPrimary}>View My Work 🚀</button>
-        </Link>
 
-        <a
-          href={process.env.PUBLIC_URL + '/Ram_Mohan_Kavuri_DevOps_resume.pdf'}
-          download="Ram_Mohan_Kavuri_Resume.pdf"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button style={styles.btnSecondary}>Download Resume 📄</button>
-        </a>
-      </div>
+  <Link to="projects" smooth={true} duration={500}>
+    <button style={styles.btnPrimary}>
+      View My Work 🚀
+    </button>
+  </Link>
+
+  <a
+    href="/ram-portfolio/Ram_Mohan_Kavuri_DevOps_resume.pdf"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <button style={styles.btnSecondary}>
+      Download Resume 📄
+    </button>
+  </a>
+
+  <a
+    href="https://github.com/RamMohanKavuri"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <button style={styles.btnSecondary}>
+      GitHub 💻
+    </button>
+  </a>
+
+  <a
+    href="https://www.linkedin.com/in/ram-mohan-kavuri-489884259/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <button style={styles.btnSecondary}>
+      LinkedIn 🔗
+    </button>
+  </a>
+
+</div>
 
     </section>
   );
@@ -63,7 +88,7 @@ const styles = {
     letterSpacing: '1px',
   },
   name: {
-    fontSize: '3.5rem',
+    fontSize: 'clamp(2rem, 6vw, 3.5rem)',
     fontWeight: 'bold',
     margin: '10px 0',
     color: '#ffffff',
@@ -72,13 +97,13 @@ const styles = {
     color: '#00bcd4',
   },
   role: {
-    fontSize: '1.5rem',
+    fontSize: 'clamp(1rem, 3vw, 1.5rem)',
     color: '#aaa',
     marginBottom: '20px',
     maxWidth: '700px',
   },
   desc: {
-    fontSize: '1.1rem',
+    fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
     color: '#ccc',
     maxWidth: '650px',
     marginBottom: '20px',
