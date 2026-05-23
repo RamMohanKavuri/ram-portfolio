@@ -1,8 +1,15 @@
 import { Link } from 'react-scroll';
+import { useState } from 'react';
 
 function Hero() {
+  const [hoveredBtn, setHoveredBtn] = useState(null);
+
   return (
     <section id="hero" style={styles.section}>
+
+      <div style={styles.openBadge}>
+        🟢 Open to Full-Time DevOps Roles
+      </div>
 
       <p style={styles.tagline}>
         🚀 DevSecOps | Cloud | Automation Enthusiast
@@ -13,58 +20,90 @@ function Hero() {
       </h1>
 
       <h2 style={styles.role}>
-        DevOps Engineer specializing in AWS, Kubernetes, CI/CD & Cloud Automation
+        Fresher DevOps Engineer · Hyderabad
       </h2>
 
       <p style={styles.desc}>
-        I specialize in designing and deploying cloud-native applications using
-        AWS, Docker, and Kubernetes. Passionate about automating CI/CD pipelines,
-        improving system reliability, and implementing DevSecOps best practices.
+        Passionate about automating CI/CD pipelines, building cloud-native
+        infrastructure on AWS, and implementing DevSecOps best practices using
+        Docker, Kubernetes, Terraform and GitHub Actions.
       </p>
 
       <div style={styles.techStack}>
-        ⚙️ AWS • Docker • Kubernetes • GitHub Actions • Linux • CI/CD
+        <span style={styles.techChip}>🐳 Docker</span>
+        <span style={styles.techChip}>☸️ Kubernetes</span>
+        <span style={styles.techChip}>☁️ AWS</span>
+        <span style={styles.techChip}>⚙️ GitHub Actions</span>
+        <span style={styles.techChip}>🔧 Jenkins</span>
+        <span style={styles.techChip}>🏗️ Terraform</span>
+        <span style={styles.techChip}>🐧 Linux</span>
+        <span style={styles.techChip}>🔄 CI/CD</span>
       </div>
 
       <div style={styles.buttons}>
 
-  <Link to="projects" smooth={true} duration={500}>
-    <button style={styles.btnPrimary}>
-      View My Work 🚀
-    </button>
-  </Link>
+        <a 
+          href="/ram-portfolio/Ram_Mohan_Kavuri_DevOps_resume.pdf"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <button
+            style={hoveredBtn === 'resume' ? {...styles.btnPrimary, ...styles.btnPrimaryHover} : styles.btnPrimary}
+            onMouseEnter={() => setHoveredBtn('resume')}
+            onMouseLeave={() => setHoveredBtn(null)}
+          >
+            📄 Download Resume
+          </button>
+        </a>
 
-  <a
-    href="/ram-portfolio/Ram_Mohan_Kavuri_DevOps_resume.pdf"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <button style={styles.btnSecondary}>
-      Download Resume 📄
-    </button>
-  </a>
+        <Link to="projects" smooth={true} duration={500}>
+          <button
+            style={hoveredBtn === 'work' ? {...styles.btnSecondary, ...styles.btnSecondaryHover} : styles.btnSecondary}
+            onMouseEnter={() => setHoveredBtn('work')}
+            onMouseLeave={() => setHoveredBtn(null)}
+          >
+            🚀 View My Work
+          </button>
+        </Link>
 
-  <a
-    href="https://github.com/RamMohanKavuri"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <button style={styles.btnSecondary}>
-      GitHub 💻
-    </button>
-  </a>
+        <a 
+          href="https://www.linkedin.com/in/ram-mohan-kavuri-489884259/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <button
+            style={hoveredBtn === 'linkedin' ? {...styles.btnSecondary, ...styles.btnSecondaryHover} : styles.btnSecondary}
+            onMouseEnter={() => setHoveredBtn('linkedin')}
+            onMouseLeave={() => setHoveredBtn(null)}
+          >
+            🔗 LinkedIn
+          </button>
+        </a>
 
-  <a
-    href="https://www.linkedin.com/in/ram-mohan-kavuri-489884259/"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <button style={styles.btnSecondary}>
-      LinkedIn 🔗
-    </button>
-  </a>
+        <a 
+          href="https://github.com/RamMohanKavuri"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <button
+            style={hoveredBtn === 'github' ? {...styles.btnSecondary, ...styles.btnSecondaryHover} : styles.btnSecondary}
+            onMouseEnter={() => setHoveredBtn('github')}
+            onMouseLeave={() => setHoveredBtn(null)}
+          >
+            💻 GitHub
+          </button>
+        </a>
 
-</div>
+      </div>
+
+      <div style={styles.githubGraph}>
+        <p style={styles.graphLabel}>My GitHub Activity</p>
+        <img
+          src="https://ghchart.rshah.org/00bcd4/RamMohanKavuri"
+          alt="Ram Mohan Kavuri GitHub Contribution Graph"
+          style={styles.graphImg}
+        />
+      </div>
 
     </section>
   );
@@ -79,7 +118,18 @@ const styles = {
     alignItems: 'center',
     textAlign: 'center',
     background: 'linear-gradient(135deg, #0a0a0a, #1a1a2e)',
-    padding: '0 20px',
+    padding: '60px 20px',
+  },
+  openBadge: {
+    backgroundColor: 'rgba(0, 188, 212, 0.1)',
+    border: '1px solid rgba(0, 188, 212, 0.4)',
+    color: '#00bcd4',
+    padding: '6px 18px',
+    borderRadius: '20px',
+    fontSize: '0.85rem',
+    fontWeight: '600',
+    marginBottom: '20px',
+    letterSpacing: '0.5px',
   },
   tagline: {
     fontSize: '1rem',
@@ -97,31 +147,45 @@ const styles = {
     color: '#00bcd4',
   },
   role: {
-    fontSize: 'clamp(1rem, 3vw, 1.5rem)',
+    fontSize: 'clamp(1rem, 3vw, 1.4rem)',
     color: '#aaa',
     marginBottom: '20px',
     maxWidth: '700px',
+    fontWeight: '400',
   },
   desc: {
-    fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
+    fontSize: 'clamp(0.95rem, 2vw, 1.05rem)',
     color: '#ccc',
-    maxWidth: '650px',
-    marginBottom: '20px',
-    lineHeight: '1.7',
+    maxWidth: '620px',
+    marginBottom: '30px',
+    lineHeight: '1.8',
   },
   techStack: {
-    fontSize: '0.95rem',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '10px',
+    marginBottom: '35px',
+    maxWidth: '700px',
+  },
+  techChip: {
+    backgroundColor: 'rgba(0, 188, 212, 0.1)',
+    border: '1px solid rgba(0, 188, 212, 0.3)',
     color: '#00bcd4',
-    marginBottom: '30px',
+    padding: '5px 14px',
+    borderRadius: '20px',
+    fontSize: '0.85rem',
+    fontWeight: '500',
   },
   buttons: {
     display: 'flex',
     gap: '15px',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    marginBottom: '50px',
   },
   btnPrimary: {
-    padding: '12px 30px',
+    padding: '13px 32px',
     backgroundColor: '#00bcd4',
     color: '#000',
     border: 'none',
@@ -129,9 +193,15 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 'bold',
     fontSize: '1rem',
+    transition: 'all 0.2s ease',
+  },
+  btnPrimaryHover: {
+    backgroundColor: '#00acc1',
+    transform: 'translateY(-2px)',
+    boxShadow: '0 6px 20px rgba(0,188,212,0.4)',
   },
   btnSecondary: {
-    padding: '12px 30px',
+    padding: '13px 32px',
     backgroundColor: 'transparent',
     color: '#00bcd4',
     border: '2px solid #00bcd4',
@@ -139,6 +209,29 @@ const styles = {
     cursor: 'pointer',
     fontWeight: 'bold',
     fontSize: '1rem',
+    transition: 'all 0.2s ease',
+  },
+  btnSecondaryHover: {
+    backgroundColor: 'rgba(0,188,212,0.1)',
+    transform: 'translateY(-2px)',
+    boxShadow: '0 6px 20px rgba(0,188,212,0.2)',
+  },
+  githubGraph: {
+    marginTop: '10px',
+    textAlign: 'center',
+  },
+  graphLabel: {
+    color: '#aaa',
+    fontSize: '0.85rem',
+    marginBottom: '10px',
+    letterSpacing: '1px',
+    textTransform: 'uppercase',
+  },
+  graphImg: {
+    width: '100%',
+    maxWidth: '600px',
+    opacity: '0.85',
+    borderRadius: '8px',
   },
 };
 
