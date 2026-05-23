@@ -1,48 +1,35 @@
-name: Deploy Portfolio to EC2
+name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # Automatically triggers when you push to main
+
+permissions:
+  contents: write
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup SSH Key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H 35.158.72.67 >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-      - name: Test SSH Connection
-        run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 ec2-user@35.158.72.67 "echo connected successfully"
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Build Docker Image
-        run: docker build -t ram-portfolio .
+      - name: Compile Production Build
+        run: npm run build
 
-      - name: Save Docker Image
-        run: docker save ram-portfolio | gzip > ram-portfolio.tar.gz
-
-      - name: Copy Image to EC2
-        run: |
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ram-portfolio.tar.gz ec2-user@35.158.72.67:/home/ec2-user/
-
-      - name: Deploy on EC2
-        run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no ec2-user@35.158.72.67 << 'ENDSSH'
-            docker load < /home/ec2-user/ram-portfolio.tar.gz
-            docker stop portfolio || true
-            docker rm portfolio || true
-            docker run -d --name portfolio -p 80:80 ram-portfolio
-            echo "Portfolio deployed successfully!"
-          ENDSSH
+      - name: Deploy Static Assets to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build     # The folder React generates when building
+          branch: gh-pages  # The clean branch GitHub Pages hosts from
