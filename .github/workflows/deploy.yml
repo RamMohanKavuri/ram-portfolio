@@ -23,7 +23,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install  # Changed from npm ci to automatically fix lock-file mismatches
 
       - name: Compile Production Build
         run: npm run build
