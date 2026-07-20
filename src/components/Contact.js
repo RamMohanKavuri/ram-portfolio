@@ -29,7 +29,12 @@ function Contact() {
       setStatus('success');
       setFormData({ name: '', email: '', message: '' });
     })
-    .catch(() => {
+    .catch((err) => {
+      // TEMPORARY: logging the real EmailJS error so we can see what's failing.
+      // Check your browser console (F12) after submitting the form.
+      console.error('EmailJS error:', err);
+      console.error('EmailJS error status:', err?.status);
+      console.error('EmailJS error text:', err?.text);
       setStatus('error');
     });
   };
